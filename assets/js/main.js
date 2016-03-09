@@ -9,8 +9,7 @@ $(function(){
             loaderVPos: '50%'
         });
     });
-    
-    
+
     /*-------------------------------------------------------------------*/
     /*  2. Makes the height of all selected elements (".match-height")
     /*  exactly equal. Requires jQuery matchHeight plugin.
@@ -18,27 +17,7 @@ $(function(){
     $(window).smartload(function(){
         $('.match-height').matchHeight();
     });
-    
-    
-    /*-------------------------------------------------------------------*/
-    /*  3. Page scrolling feature, requires jQuery Easing plugin.
-    /*-------------------------------------------------------------------*/
-    var pageScroll = function(){
-        $('.page-scroll a').bind('click', function(e){
-            e.preventDefault();
 
-            var $anchor = $(this);
-            var offset = $('body').attr('data-offset');
-
-            $('html, body').stop().animate({
-                scrollTop: $($anchor.attr('href')).offset().top - (offset - 1)
-            }, 1500, 'easeInOutExpo');
-        });
-    };
-    
-    pageScroll();
-    
-    
     /*-------------------------------------------------------------------*/
     /*  4. Make navigation menu on your page always stay visible.
     /*  Requires jQuery Sticky plugin.
@@ -48,16 +27,15 @@ $(function(){
         nav.unstick();
         nav.sticky({topSpacing: 0});
     };
-    
+
     stickyMenu();
-    
+
     // Call pageScroll() and stickyMenu() when window is resized.
     $(window).smartresize(function(){
-        pageScroll();
         stickyMenu();
     });
-    
-    
+
+
     /*-------------------------------------------------------------------*/
     /*  5. Portfolio gallery. Requires jQuery Magnific Popup plugin.
     /*-------------------------------------------------------------------*/
@@ -65,13 +43,13 @@ $(function(){
         delegate: 'a.zoom',
         type: 'image',
         fixedContentPos: false,
-        
+
         // Delay in milliseconds before popup is removed
         removalDelay: 300,
-        
+
         // Class that is added to popup wrapper and background
         mainClass: 'mfp-fade',
-        
+
         gallery: {
             enabled: true,
             preload: [0,2],
@@ -80,8 +58,8 @@ $(function(){
             tNext: 'Next Project'
         }
     });
-    
-    
+
+
     /*-------------------------------------------------------------------*/
     /*  6. Column Chart (Section - My Strenghts)
     /*-------------------------------------------------------------------*/
@@ -89,8 +67,7 @@ $(function(){
         $('.column-chart > .chart > .item > .bar > .item-progress').each(function(){
             var item = $(this);
             var newHeight = $(this).parent().height() * ($(this).data('percent') / 100);
-            
-            // Only animate elements when using non-mobile devices    
+
             if (jQuery.browser.mobile === false){
                 $('.column-chart').one('inview', function(isInView) {
                     if (isInView){
@@ -106,13 +83,12 @@ $(function(){
             }
         });
     };
-    
     // Call columnChart() when window is loaded.
     $(window).smartload(function(){
         columnChart();
     });
-    
-    
+
+
     /*-------------------------------------------------------------------*/
     /*  7. Section - My Resume
     /*-------------------------------------------------------------------*/
@@ -130,24 +106,24 @@ $(function(){
             educationItem.collapse('hide');
         }
     };
-    
+
     // Call resumeCollapse() when window is loaded.
     $(window).smartload(function(){
         resumeCollapse();
     });
-    
+
     // Call resumeCollapse() when window is resized.
     $(window).smartresize(function(){
         resumeCollapse();
     });
-    
-    
+
+
     /*-------------------------------------------------------------------*/
-    /*	8. References slider. Requires Flexslider plugin.
+    /*  8. References slider. Requires Flexslider plugin.
     /*-------------------------------------------------------------------*/
     $(window).smartload(function(){
         var flex = $('.flexslider.references');
-    
+
         flex.flexslider({
             selector: ".slides > .item",
             manualControls: ".flex-control-nav li",
@@ -158,20 +134,19 @@ $(function(){
                     slider.play();
                 }
             }
-        }); 
+        });
     });
-    
+
     $('a.flex-prev').on('click', function(e){
         e.preventDefault();
         $('.flexslider').flexslider('prev');
     });
-    
+
     $('a.flex-next').on('click', function(e){
         e.preventDefault();
         $('.flexslider').flexslider('next');
     });
-    
-    
+
     /*-------------------------------------------------------------------*/
     /*  9. Circle Chart (Section - Skills & Expertise)
     /*-------------------------------------------------------------------*/
@@ -180,8 +155,7 @@ $(function(){
             var item = $(this);
             var maxHeight = 108;
             var newHeight = maxHeight * ($(this).data('percent') / 100);
-            
-            // Only animate elements when using non-mobile devices    
+
             if (jQuery.browser.mobile === false){
                 item.one('inview', function(isInView) {
                     if (isInView){
@@ -197,13 +171,12 @@ $(function(){
             }
         });
     };
-    
+
     // Call circleChart() when window is loaded.
     $(window).smartload(function(){
         circleChart();
     });
-    
-    
+
     /*-------------------------------------------------------------------*/
     /*  10. Bar Chart (Section - Knowledge)
     /*-------------------------------------------------------------------*/
@@ -212,8 +185,7 @@ $(function(){
             var item = $(this);
             var percent = $(this).prev();
             var newWidth = $(this).parent().width() * ($(this).data('percent') / 100);
-            
-            // Only animate elements when using non-mobile devices    
+
             if (jQuery.browser.mobile === false){
                 item.one('inview', function(isInView) {
                     if (isInView){
@@ -221,7 +193,6 @@ $(function(){
                         item.animate({
                             width: newWidth
                         },1500);
-                        
                         percent.animate({
                             left: newWidth - percent.width()
                         },1500);
@@ -234,32 +205,29 @@ $(function(){
             }
         });
     };
-    
+
     // Call barChart() when window is loaded.
     $(window).smartload(function(){
         barChart();
     });
-    
+
     // Call barChart() when window is resized.
     $(window).smartresize(function(){
         barChart();
     });
-    
-    
+
     /*-------------------------------------------------------------------*/
     /*  11. Milestones counter.
     /*-------------------------------------------------------------------*/
     var counter = function (){
         var number = $('.milestones .number');
-        
         number.countTo({
             speed: 3000
         });
     };
-    
+
     if (jQuery.browser.mobile === false){
         var number = $('.milestones .number');
-        
         number.one('inview', function(isInView) {
             if (isInView){
                 counter();
@@ -270,3 +238,9 @@ $(function(){
         counter();
     }
 });
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
