@@ -5,7 +5,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-	return render_template ('index.html')
+	return render_template('index.html')
+
+@app.route('/chart')
+def chart():
+	return render_template('file.html')
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
