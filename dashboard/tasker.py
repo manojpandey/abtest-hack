@@ -1,7 +1,7 @@
 import requests
 import time
 import json
-import sys
+import sys, os
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
@@ -10,19 +10,24 @@ from selenium.common.exceptions import NoSuchElementException
 
 def main():
 	
-	driver = webdriver.Firefox()
+	# driver = webdriver.Firefox()
 
+	chromedriver = "/home/manoj/Downloads/chromedriver"
+	os.environ["webdriver.chrome.driver"] = chromedriver
+	driver = webdriver.Chrome(chromedriver)
 	url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_analysis_type:rolling,chart_type:line,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"	
-
 	driver.get(url)
-	xp = ".//*[local-name()='svg']"
-	
+	# xp = ".//*[@id='highcharts-2']"
+	xp = '/html/body/div[1]/div/div[2]/div[4]/div[2]/div/div/div[2]/div[3]/div[2]'
+	cl = 'highcharts-container'
 	found = False
 	while not found:
 		try:
-			svgg = driver.find_element_by_xpath(xp)
-			print "this works!!"
-			print str(svgg.text)
+			# svgg = driver.find_elements_by_xpath(xp)
+			elem = driver.find_element_by_class_name(cl)
+			html = elem.get_attribute('innerHTML')
+			print html
+			# print str(elem.text)
 			found = True
 		except NoSuchElementException:
 			time.sleep(2)
