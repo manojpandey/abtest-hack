@@ -5,7 +5,7 @@
   var _bucket;
   var _dev;
   var _DEV_REGEX = /#!dev/;
-  var _COOKIE_NAME = '_easyab_seed';
+  var _COOKIE_NAME = '_sparkab_seed';
 
   function _getBucket(buckets) {
     var seed;
@@ -164,7 +164,6 @@
   }
 
   /**
-   * easyAB plugin definition.
    * @param {Object} options The options.
    */
   $.fn.sparkab = function(options) {
