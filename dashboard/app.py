@@ -11,6 +11,10 @@ def main():
 def chart():
 	return render_template('file.html')
 
+@app.route('/pie')
+def pie():
+	return render_template('pie.html')
+
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))

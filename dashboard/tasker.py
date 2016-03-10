@@ -16,10 +16,14 @@ def main():
 	os.environ["webdriver.chrome.driver"] = chromedriver
 	driver = webdriver.Chrome(chromedriver)
 	# pie
-	# url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_type:pie,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"
 	# rolling
+	i = 0
 	while True:
-		url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_analysis_type:rolling,chart_type:line,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"	
+		i = i +1
+		if i&1:
+			url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_type:pie,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"
+		else:
+			url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_analysis_type:rolling,chart_type:line,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"	
 
 		driver.get(url)
 		# xp = ".//*[@id='highcharts-2']"
@@ -32,7 +36,10 @@ def main():
 				elem = driver.find_element_by_class_name(cl)
 				html = elem.get_attribute('innerHTML')
 				# print html
-				f = open('file.html', 'w')
+				if i&1:
+					f = open('templates/file.html', 'w')
+				else:
+					f = open('templates/pie.html', 'w')
 				f.write(html)
 				f.close()
 				# print str(elem.text)
