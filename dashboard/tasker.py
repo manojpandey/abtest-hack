@@ -21,9 +21,9 @@ def main():
 	while True:
 		i = i +1
 		if i&1:
-			url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_type:pie,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"
+			url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_analysis_type:rolling,chart_type:line,from_date:-1,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:-1,type:general,unit:hour"
 		else:
-			url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_analysis_type:rolling,chart_type:line,from_date:0,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:0,type:general,unit:hour"	
+			url = "https://mixpanel.com/report/900585/segmentation/#action:segment,arb_event:Session,bool_op:and,chart_type:pie,from_date:-1,ms_checked:(green:!t,red:!t),ms_values:!(red,green),segfilter:!((dropdown_tab_index:0,property:(name:btn-abtest,source:properties,type:string),selected_property_type:string,type:string)),segment_type:string,to_date:-1,type:general,unit:hour"	
 
 		driver.get(url)
 		# xp = ".//*[@id='highcharts-2']"
